@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CamionesService } from '../../../Services/camiones.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-listarcamiones',
-  imports: [],
+  imports: [CommonModule],//CommonModule
   templateUrl: './listarcamiones.component.html',
   styleUrl: './listarcamiones.component.css'
 })
@@ -19,5 +21,7 @@ export class ListarcamionesComponent {
   get listCamiones(){
     return this.camionesservice.listacamiones;
   } 
+
+  eliminarCamion(id:any){}
 
 }

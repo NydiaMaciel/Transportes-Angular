@@ -1,1 +1,95 @@
-<p>listarcamiones works!</p>
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-col">
+        <div class="h-1 bg-gray-200 rounded overflow-hidden">
+          <div class="w-24 h-full bg-purple-500"></div>
+        </div>
+        <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+          <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">Lista de Camiones</h1>
+          
+          <p class="sm:w-5/5 leading-relaxed text-base sm:pl-10 pl-0">
+            <a class="text-white bg-purple-700 hover:bg-purple-800 bg-purple-800 
+           focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-purple-600 dark:bg-purple-700 dark:bg-purple-800"
+              href="/insertarcamion">
+              Nuevo camión
+            </a>
+          </p>
+
+
+        </div>
+
+
+      </div>
+      <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+        <!-- Se toma el componente de las tarjetas que se repite y se le pone la directiva *ngFor para que ese elemento se repita
+         segun los elementos de listCamiones pues aqui se guarda el resultado de getCamiones() -->
+        <div *ngFor="let camion of listCamiones" class="p-4 md:w-1/3 sm:mb-0 mb-6" >
+            <div class="rounded-lg h-64 overflow-hidden">
+                <img alt="content" class="object-cover object-center h-full w-full" src="http://localhost:5278/api/Camiones/{{camion.urlFoto}}">
+            </div>
+            <h3 class="tracking-widest text-purple-500 text-xs font-medium title-font">{{camion.tipo_Camion}}</h3> 
+            <h2 class="text-xl font-medium title-font text-gray-900 mt-0">
+                <span class="inline-flex">
+                    <!-- Se toma el dato de disponibilidad para poner una seña visual de la misma con la condicion *ngIf -->
+                    <div *ngIf="camion.disponibilidad">
+                        <div class="flex">
+                            <div class="h-3.5 w-3.5 rounded-full bg-green-600"></div>
+                        </div>
+                    </div>
+                </span>
+                <span class="inline-flex">
+                    <div *ngIf="!camion.disponibilidad">
+                        <div class="inline-flex">
+                            <div class="h-3.5 w-3.5 rounded-full bg-red-500"></div>
+                        </div>
+                    </div>
+                </span> 
+                Matrícula:{{camion.matricula}}
+            </h2>
+            <div class="datoscamion2cols" style="width:100%;display: flex;justify-content: space-around;">
+                <div style="width: 45%;">
+                    <p class="text-base leading-relaxed mt-2">Marca: {{camion.marca}}</p>
+                </div>
+                <div style="width: 45%;">
+                    <p class="text-base leading-relaxed mt-2">Modelo: {{camion.modelo}}</p>
+                </div>
+            </div>
+            <div class="datoscamion2cols" style="width:100%;display: flex;justify-content: space-around;">
+                <div style="width: 45%;">
+                    <p class="text-base leading-relaxed mt-2">Capacidad: {{camion.capacidad}}</p>
+                </div>
+                <div style="width: 45%;">
+                    <p class="text-base leading-relaxed mt-2">Kilometraje: {{camion.kilometraje}}</p>
+                </div>
+            </div>
+
+            <br />
+            <div class="flex items-center flex-wrap justify-between">
+                <a
+                    class="text-green-700 inline-flex items-center md:mb-2 lg:mb-0 mt-2"
+                    href="actualizarcamion/{{ camion.iD_Camion }}"
+                    >Editar
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                </a>
+                <a
+                    class="text-red-500 inline-flex items-center md:mb-2 lg:mb-0 mt-1"
+                    (click)="eliminarCamion(camion.iD_Camion)"
+                    >Eliminar
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                </a>
+            </div>
+
+          <a class="text-purple-500 inline-flex items-center mt-3">Detalles
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </section>
